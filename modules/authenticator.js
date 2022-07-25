@@ -2,8 +2,8 @@ const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcryptjs");
 const User = require("../models/userModel");
 
-const strategy = async (username, password, done) => {
- await User.findOne({ username }, (err, user) => {
+const strategy = (username, password, done) => {
+ User.findOne({ username }, (err, user) => {
    if (err) { 
      return done(err);
    }
@@ -22,8 +22,8 @@ const strategy = async (username, password, done) => {
 
 const serializeUser = (user, done) => done(null, user._id);
 
-const deserializeUser = async (_id, done) => {
-  await User.findById(_id, (err, user) => {
+const deserializeUser = (_id, done) => {
+  User.findById(_id, (err, user) => {
     done(err, user);
   });
 }

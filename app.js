@@ -5,7 +5,6 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
 const session = require("express-session");
-const MongoStore = require("connect-mongo")(session);
 
 const passport = require("passport");
 const authenticate = require("./modules/authenticator");
@@ -22,7 +21,6 @@ const mongoDB = process.env.MONGO_URI;
 mongoose.connect(mongoDB, { useUnifiedTopology: true, useNewUrlParser: true })
         .then(() => console.log("connected to mongodb"))
         .catch(err => console.log(err));
-const db = mongoose.connection;
 
 authenticate(passport);
 
@@ -37,8 +35,7 @@ app.use(function(req, res, next) {
 app.use(session({ 
   secret: "cats", 
   resave: false, 
-  saveUninitialized: true,
-  store: new MongoStore({ client: db.client }); 
+  saveUninitialized: true
 }));
 app.use(passport.initialize());
 app.use(passport.session());

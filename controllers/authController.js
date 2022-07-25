@@ -16,7 +16,9 @@ const sign_up_post = (req, res, next) => {
       if (err) { 
         return next(err);
       }
-      passport.authenticate("local", { successRedirect: "/" });
+      passport.authenticate("local") (req, res, () => {
+        return res.redirect("/");
+      });
     });
   });
 }
@@ -26,7 +28,7 @@ const log_in_get = (req, res) => res.render("login-form");
 const log_in_post = () => {
  passport.authenticate("local", {
   successRedirect: "/",
-  failureRedirect: "/login-form"
+  failureRedirect: "/"
  });
 }
 
