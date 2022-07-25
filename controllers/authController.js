@@ -25,12 +25,10 @@ const sign_up_post = (req, res, next) => {
 
 const log_in_get = (req, res) => res.render("login-form");
 
-const log_in_post = () => {
- passport.authenticate("local", {
+const log_in_post = passport.authenticate("local", {
   successRedirect: "/",
-  failureRedirect: "/"
- });
-}
+  failureRedirect: "/login-form"
+});
 
 const log_out_get = (req, res, next) => {
  req.logout(err => {
