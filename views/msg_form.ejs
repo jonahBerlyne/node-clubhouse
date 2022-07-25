@@ -1,0 +1,17 @@
+<div>
+ <form action="" method="POST">
+  <div class="form-group">
+   <label for="msg">New message:</label>
+   <input id="msg" name="msg" class="form-control" type="text" placeholder="Enter a message here..." required="true" value=<%- msg === undefined ? "" : msg.msg %> >
+  </div>
+ </form>
+ <% if (errors) { %>
+  <ul>
+   <% errors.forEach(error => { %>
+    <li>
+     <%- error.msg %>
+    </li>
+   <% }) %>
+  </ul>
+ <% } %>
+</div>

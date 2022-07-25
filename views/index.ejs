@@ -13,9 +13,11 @@
       Hello, <%= user.username %>
     </h1>
     <a href="/log-out">Log out</a>
+    <%- include('./msg_form.ejs') %>
   <% } else { %>
-    <a href="/log-in">Log in</a>
-    <a href="/sign-up">Sign up</a>
+      <a href="/log-in">Log in</a>
+      <a href="/sign-up">Sign up</a>
   <% } %>
+  <%- include('./msgs.ejs') %>
 </body>
 </html>

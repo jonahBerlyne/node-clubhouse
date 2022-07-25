@@ -12,6 +12,7 @@ const authenticate = require("./modules/authenticator");
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const authRouter = require('./routes/authRoutes');
+const msgRouter = require('./routes/msgRoutes');
 
 require('dotenv').config();
 
@@ -48,6 +49,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/', authRouter);
+app.use('/', msgRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler

@@ -1,0 +1,17 @@
+<div>
+ <% if (msgs.length > 0) { %>
+  <% msgs.forEach(msg => { %>
+    <div>
+     <h4>
+      <%= msg.text %>
+     </h4>
+     <p>
+      Written by <%= user === undefined ? "anonymous" : msg.author %>
+     </p>
+     <% if (user === msg.author) { %>
+      <a href="/delete-msg">Delete</a>
+     <% } %>
+    </div>
+  <% }) %>
+ <% } %>
+</div>
