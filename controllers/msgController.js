@@ -3,13 +3,13 @@ const { body, validationResult } = require("express-validator");
 
 const msgs_get = (req, res, next) => {
  Msg.find({}, 'author text')
-    .sort({author: 1})
+    .sort({ createdAt: 'desc' })
     .populate('author')
     .exec((err, msgs) => {
      if (err) {
       return next(err);
      }
-     res.render('msgs', { 
+     res.render('index', { 
       msgs,
       user: req.user 
      });
@@ -22,7 +22,7 @@ const msg_create_get = (req, res) => res.render('msg_form', {
 });
 
 const msg_create_post = [
- body("text", "Text field must not be empty.")
+ body("msg", "Text field must not be empty.")
      .trim()
      .isLength({ min: 1 })
      .escape(),
@@ -31,7 +31,7 @@ const msg_create_post = [
   const errors = validationResult(req);
   const msg = new Msg({
    author: req.user,
-   text: req.body.text
+   text: req.body.msg
   });
 
   if (!errors.isEmpty()) {

@@ -6,10 +6,13 @@
       <%= msg.text %>
      </h4>
      <p>
-      Written by <%= user === undefined ? "anonymous" : msg.author %>
+      Written by <%= user === undefined ? "anonymous" : msg.author.username %>
      </p>
-     <% if (user === msg.author) { %>
-      <a href="/delete-msg">Delete</a>
+     <% if (user && user._id.toString() === msg.author._id.toString()) { %>
+      <form method="POST">
+       <input type="hidden" name="msgid" value=<%- msg._id %>>
+       <button type="submit">Delete</button>
+      </form>
      <% } %>
     </div>
   <% }) %>

@@ -8,9 +8,8 @@ const {
  msg_delete_post 
 } = require("../controllers/msgController");
 
-router.get("/", msgs_get);
-router.get("/", msg_create_get);
-router.post("/", msg_create_post);
-router.post("/delete-msg", msg_delete_post);
+router.get("/create-post", msg_create_get);
+router.post("/create-post", msg_create_post);
+router.post("/", msg_delete_post);
 
 module.exports = router;

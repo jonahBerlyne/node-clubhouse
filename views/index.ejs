@@ -12,12 +12,12 @@
     <h1>
       Hello, <%= user.username %>
     </h1>
+    <a href="/create-post">Create post</a>
     <a href="/log-out">Log out</a>
-    <%- include('./msg_form.ejs') %>
   <% } else { %>
       <a href="/log-in">Log in</a>
       <a href="/sign-up">Sign up</a>
   <% } %>
-  <%- include('./msgs.ejs') %>
+  <%- include('./msgs.ejs', { msgs, user }) %>
 </body>
 </html>
